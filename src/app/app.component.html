@@ -1,0 +1,66 @@
+<h1 align="center">Hello World {{title}}</h1>
+<router-outlet></router-outlet>
+<form [formGroup]="userForm">
+  <label>Name:</label>
+  <input type="text" name="name" formControlName="name" placeholder="Name"><br>
+  <div *ngIf="!userForm.controls['name'].valid && (userForm.controls['name'].touched || userForm.controls['name'].touched )">
+    <div [hidden]="!userForm.controls['name'].errors.required">
+      Name is required
+    </div>
+    <div [hidden]="!userForm.controls['name'].errors.minlength">
+      Name must be longer than 5 ch
+    </div>
+  </div><br>
+
+  <label>Last Name:</label>
+  <input type="text" name="lastName" formControlName="lastName" placeholder="LastName"><br><br>
+
+  <label>Gender: </label>
+  <select name="gender" formControlName="gender" >
+    <option *ngFor="let i of gender"  [value]="i" > {{i}}</option>
+  </select><br><br>
+
+  <button type="submit" [disabled]="!userForm.valid" (click)="submit()"> submit</button>
+  <button *ngIf="newUser" (click)="putUser()" mat-raised-button color="primary" class="margin-top margin-right-15" [disabled]="!userForm.valid">Save</button>
+  <button *ngIf="newUser" (click)="cancelPutUser()" mat-raised-button color="warn" class="margin-top" [disabled]="!userForm.valid">Cancel</button>
+</form>
+
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Last Name Column -->
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+  </ng-container>
+
+  <!-- Gender Column -->
+  <ng-container matColumnDef="gender">
+    <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell  *matHeaderCellDef> Actions </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+    <button (click)="delete(element.id)">Delete</button>&nbsp;&nbsp;&nbsp;
+    <button (click)="update(element)"><a routerLink="/update"> Update</a></button>
+    </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+

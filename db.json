@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "name": "Abzal",
+      "lastName": "Aitmoldanov",
+      "gender": "Male",
+      "id": 5
+    },
+    {
+      "id": 7,
+      "name": "Barselona",
+      "lastName": "Spain123",
+      "gender": "Female"
+    },
+    {
+      "name": "Alisher",
+      "lastName": "sretruyui",
+      "gender": "Male",
+      "id": 9
+    },
+    {
+      "name": "Hala Madrid ",
+      "lastName": "y6turetwegr",
+      "gender": "Male",
+      "id": 10
+    }
+  ]
+}
